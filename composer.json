@@ -3,9 +3,6 @@
   "description": "description",
   "minimum-stability": "stable",
   "license": "proprietary",
-  "config": {
-    "platform-check": false
-  },
   "authors": [
     {
       "name": "MI",
@@ -13,6 +10,7 @@
     }
   ],
   "require": {
-    "symfony/mailer": "5.2.11"
+    "php": ">=8.4.1",
+    "symfony/mailer": "^7.4"
   }
 }
