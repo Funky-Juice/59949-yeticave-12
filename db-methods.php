@@ -8,7 +8,7 @@ function getDbConnect()
     $config = require('db-config.php');
     $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['db_name']);
 
-    mysqli_set_charset($conn, "utf8");
+    mysqli_set_charset($conn, "utf8mb4");
 
     return $conn;
 }

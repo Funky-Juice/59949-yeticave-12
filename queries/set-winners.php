@@ -13,7 +13,7 @@ function setWinners(mysqli $conn)
         JOIN (
         SELECT b.lot_id, MAX(created_at) AS bet_created
         FROM (
-            SELECT id AS lot_id, @var := CONCAT_WS(',', id, @var)
+            SELECT id AS lot_id
             FROM lots
             WHERE winner IS NULL AND expiry_dt < NOW()
         ) AS SQ1
