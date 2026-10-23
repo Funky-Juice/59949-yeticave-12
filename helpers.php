@@ -231,7 +231,7 @@ function moveFileToLocalPath(array $file): ?string
  */
 function showError(string $error)
 {
-    print(includeTemplate('error.php', ['error' => $error, 'title' => 'GifTube - Страница ошибки']));
+    print(includeTemplate('error.php', ['error' => $error, 'title' => 'YetiCave - Страница ошибки']));
 }
 
 /**
@@ -257,7 +257,7 @@ function showScreen(array $params)
     $layout_content = includeTemplate('layout.php', [
         'user' => getSessionUser(),
         'content' => $page_content,
-        'title' => 'GifTube - ' . $params['title'],
+        'title' => 'YetiCave - ' . $params['title'],
         'categories_list_templ' => $params['categories_list_tmpl']
     ]);
 
