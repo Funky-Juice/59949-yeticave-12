@@ -1,4 +1,8 @@
 <?php
+// Намеренно отключено: назначение победителей не доработано и не протестировано.
+// Файл не удалять. Чтобы включить — убрать этот return и вернуть require_once в index.php.
+return;
+
 require_once('mailer.php');
 
 require_once('queries/set-lots-without-winner.php');

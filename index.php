@@ -3,7 +3,8 @@
 $db_conn = require_once('init.php');
 require_once('queries/lots.php');
 require_once('queries/lots-count.php');
-require_once('get-winner.php');
+// get-winner.php намеренно не подключается: назначение победителей не доработано и не протестировано.
+// require_once('get-winner.php');
 
 $LOTS_PER_PAGE = 9;
 
