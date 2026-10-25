@@ -167,6 +167,43 @@ function lotTimeLeftCalc(string $date): array
     return [$hours_left, $minutes_left];
 }
 
+/**
+ * Подпись таймера лота. На расчёт ставок и проверку истечения срока не влияет.
+ * @param string $date дата окончания жизни лота
+ * @return array{label: string, finishing: bool}
+ */
+function formatLotTimeLeft(string $date): array
+{
+    date_default_timezone_set("Europe/Moscow");
+    $end = date_create($date);
+    $now = date_create();
+
+    if (!$end || $end <= $now) {
+        return ['label' => '00:00', 'finishing' => true];
+    }
+
+    $diff = date_diff($now, $end);
+    $hours = $diff->days * 24 + $diff->h;
+
+    if ($hours < 24) {
+        return [
+            'label' => sprintf('%02d:%02d', $hours, $diff->i),
+            'finishing' => $hours < 1,
+        ];
+    }
+
+    if ($diff->days <= 30) {
+        return ['label' => $diff->days . ' дн.', 'finishing' => false];
+    }
+
+    $months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+
+    return [
+        'label' => 'до ' . $end->format('j') . ' ' . $months[(int) $end->format('n') - 1],
+        'finishing' => false,
+    ];
+}
+
 
 /**
  * @param array $data

@@ -17,11 +17,10 @@
                         <?= formatPrice($item['initial_price']); ?>
                     </span>
                 </div>
-                <?php [$hours, $minutes] = lotTimeLeftCalc($item['expiry_dt']) ?>
-                    <div class="lot__timer timer <?= $hours < 1 ? 'timer--finishing' : '' ?>">
-                        <?= $hours ?>:<?= $minutes ?>
-                    </div>
-                <?php ?>
+                <?php $time_left = formatLotTimeLeft($item['expiry_dt']); ?>
+                <div class="lot__timer timer <?= $time_left['finishing'] ? 'timer--finishing' : '' ?>">
+                    <?= $time_left['label'] ?>
+                </div>
             </div>
         </div>
     </li>

@@ -39,11 +39,10 @@
                             <?php elseif (isset($item['winner']) || lotTimeLeftCalc($item['expiry_dt']) === ['00', '00']) : ?>
                                 <div class="timer timer--end">Торги окончены</div>
                             <?php else : ?>
-                                <?php [$hours, $minutes] = lotTimeLeftCalc($item['expiry_dt']) ?>
-                                    <div class="lot__timer timer <?= $hours < 1 ? 'timer--finishing' : '' ?>">
-                                        <?= $hours ?>:<?= $minutes ?>
-                                    </div>
-                                <?php ?>
+                                <?php $time_left = formatLotTimeLeft($item['expiry_dt']); ?>
+                                <div class="lot__timer timer <?= $time_left['finishing'] ? 'timer--finishing' : '' ?>">
+                                    <?= $time_left['label'] ?>
+                                </div>
                             <?php endif; ?>
                         </td>
                         <td class="rates__price">

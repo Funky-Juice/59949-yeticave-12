@@ -650,6 +650,10 @@ main.container {
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .timer {
@@ -984,9 +988,12 @@ input:invalid .form__error{
   -webkit-align-self: flex-end;
   -ms-flex-item-align: end;
   align-self: flex-end;
-  width: 80px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   margin-bottom: 19px;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .lot-item__cost-state {
@@ -1198,8 +1205,11 @@ input:invalid .form__error{
 }
 
 .rates__timer .timer {
-  width: 82px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .rates__timer .timer--win {

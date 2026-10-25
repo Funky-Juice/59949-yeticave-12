@@ -13,11 +13,10 @@
             </div>
             <div class="lot-item__right">
                 <div class="lot-item__state">
-                    <?php [$hours, $minutes] = lotTimeLeftCalc($lot['expiry_dt']) ?>
-                        <div class="lot-item__timer timer <?= $hours < 1 ? 'timer--finishing' : '' ?>">
-                            <?= $hours ?>:<?= $minutes ?>
-                        </div>
-                    <?php ?>
+                    <?php $time_left = formatLotTimeLeft($lot['expiry_dt']); ?>
+                    <div class="lot-item__timer timer <?= $time_left['finishing'] ? 'timer--finishing' : '' ?>">
+                        <?= $time_left['label'] ?>
+                    </div>
                     <div class="lot-item__cost-state">
                         <?php $price = $lot['current_price'] ?? $lot['initial_price'] ?>
                             <div class="lot-item__rate">
