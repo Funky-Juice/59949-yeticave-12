@@ -5,6 +5,9 @@
  */
 function getDbConnect()
 {
+    // Ошибки SQL остаются в mysqli_error и не превращаются в HTML-трассу исключения.
+    mysqli_report(MYSQLI_REPORT_OFF);
+
     $config = require('db-config.php');
     $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['db_name']);
 
