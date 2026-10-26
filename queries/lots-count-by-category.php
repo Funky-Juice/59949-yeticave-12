@@ -7,12 +7,12 @@
  */
 function getLotsCountByCategory(mysqli $conn, string $category_id): ?string
 {
-    $sql = "SELECT COUNT(*) as lots_count FROM lots l WHERE l.category_id = $category_id AND l.expiry_dt > NOW()";
+    $sql = "SELECT COUNT(*) AS lots_count FROM lots l WHERE l.category_id = ? AND l.expiry_dt > NOW()";
 
-    $result = fetchOneFromDb($conn, $sql);
+    $result = fetchFromDbByParams($conn, $sql, [$category_id]);
 
-    if (isset($result) && isset($result['lots_count'])) {
-        return $result['lots_count'];
+    if (is_array($result) && isset($result[0]['lots_count'])) {
+        return $result[0]['lots_count'];
     }
 
     return null;
