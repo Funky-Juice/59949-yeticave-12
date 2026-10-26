@@ -507,9 +507,9 @@ function sanitize(?string $input): string
  */
 function calcPageUrl(int $page):string
 {
-    parse_str($_SERVER['QUERY_STRING'], $query_string);
+    parse_str($_SERVER['QUERY_STRING'] ?? '', $query_string);
     $query_string['page'] = $page;
     $rdr_str = http_build_query($query_string);
 
-    return $_SERVER['PHP_SELF'] . '?' . $rdr_str;
+    return ($_SERVER['SCRIPT_NAME'] ?? '') . '?' . $rdr_str;
 }

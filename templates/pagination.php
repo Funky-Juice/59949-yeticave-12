@@ -4,19 +4,19 @@
             <?php if ($cur_page <= 1): ?>
                 <a>Назад</a>
             <?php else : ?>
-                <a href="<?= calcPageUrl($cur_page - 1); ?>">Назад</a>
+                <a href="<?= e(calcPageUrl($cur_page - 1)); ?>">Назад</a>
             <?php endif; ?>
         </li>
         <?php foreach ($pages as $page): ?>
             <li class="pagination-item <?= (intval($page) === $cur_page) ? 'pagination-item-active' : ''; ?>">
-                <a href="<?= calcPageUrl($page); ?>"><?= $page; ?></a>
+                <a href="<?= e(calcPageUrl($page)); ?>"><?= (int) $page; ?></a>
             </li>
         <?php endforeach; ?>
         <li class="pagination-item pagination-item-next">
             <?php if ($cur_page >= count($pages)): ?>
                 <a>Вперед</a>
             <?php else : ?>
-                <a href="<?= calcPageUrl($cur_page + 1); ?>">Вперед</a>
+                <a href="<?= e(calcPageUrl($cur_page + 1)); ?>">Вперед</a>
             <?php endif; ?>
         </li>
     </ul>
