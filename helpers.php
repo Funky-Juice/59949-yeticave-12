@@ -481,13 +481,23 @@ function sendLettersToTheWinners(array $data)
 }
 
 /**
+ * Экранирует строку для вывода в HTML-текст и атрибуты.
+ * @param string|null $value
+ * @return string
+ */
+function e(?string $value): string
+{
+    return htmlspecialchars($value ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+/**
  * Принимает на вход строку, удаляет пробелы по краям и экранирует спец.символы
  * @param string|null $input
  * @return string
  */
-function sanitize(?string $input):string
+function sanitize(?string $input): string
 {
-    return htmlspecialchars(trim($input));
+    return e(trim($input ?? ''));
 }
 
 /**
