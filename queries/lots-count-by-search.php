@@ -7,15 +7,15 @@
  */
 function getLotsCountBySearch(mysqli $conn, string $search_str): ?string
 {
-    $sql = "SELECT COUNT(*) as lots_count
+    $sql = "SELECT COUNT(*) AS lots_count
     FROM lots l
-    WHERE MATCH(l.title, description) AGAINST('$search_str' IN BOOLEAN MODE)
+    WHERE MATCH(l.title, description) AGAINST(? IN BOOLEAN MODE)
     AND l.expiry_dt > NOW()";
 
-    $result = fetchOneFromDb($conn, $sql);
+    $result = fetchFromDbByParams($conn, $sql, [$search_str]);
 
-    if (isset($result) && isset($result['lots_count'])) {
-        return $result['lots_count'];
+    if (is_array($result) && isset($result[0]['lots_count'])) {
+        return $result[0]['lots_count'];
     }
 
     return null;

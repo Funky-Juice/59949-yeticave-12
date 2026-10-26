@@ -20,7 +20,7 @@ $pages = [];
 $offset = 0;
 $cur_page = 0;
 
-$search_str = sanitize($_GET['search'] ?? '');
+$search_str = trim($_GET['search'] ?? '');
 
 if ($search_str) {
     $lots_count = getLotsCountBySearch($db_conn, $search_str);
