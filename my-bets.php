@@ -13,7 +13,7 @@ $categories_list = getCategories($db_conn);
 
 if (!is_array($categories_list) && !$categories_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -21,7 +21,7 @@ $user_bets = getUserBets($db_conn, $user['id']);
 
 if (!is_array($user_bets) && !$user_bets) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 

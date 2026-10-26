@@ -11,7 +11,7 @@ $categories_list = getCategories($db_conn);
 
 if (!is_array($categories_list) && !$categories_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -37,7 +37,7 @@ $lots_list = getLotsByCategory($db_conn, $category_id, $LOTS_PER_PAGE, $offset);
 
 if (!is_array($lots_list) && !$lots_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 

@@ -24,7 +24,7 @@ if ($lotIds && $winnersUpdated) {
 
     if (!$winnersInfo && !is_array($winnersInfo)) {
         $error = getDbError($db_conn);
-        showError($error);
+        showDbError($error);
         exit();
     }
 

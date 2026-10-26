@@ -10,8 +10,7 @@ session_start();
 $db_conn = getDbConnect();
 
 if (!$db_conn) {
-    $error = getDbConnectionError();
-    showError($error);
+    showDbError(getDbConnectionError() ?? 'Не удалось подключиться к базе');
     exit();
 }
 

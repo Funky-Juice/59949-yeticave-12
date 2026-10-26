@@ -44,7 +44,7 @@ function sendEmail($transport, $message)
     try {
         $mailer->send($message);
     } catch (TransportExceptionInterface $e) {
-        echo 'Выброшено исключение: ',  $e->getDebug(), "\n";
-        exit();
+        error_log($e->getDebug());
+        exit(1);
     }
 }

@@ -10,7 +10,7 @@ $categories_list = getCategories($db_conn);
 
 if (!is_array($categories_list) && !$categories_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -26,7 +26,7 @@ $lot = getLotById($db_conn, $lot_id);
 $error = getDbError($db_conn);
 
 if ($error) {
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -43,7 +43,7 @@ foreach ($bets_list as $key => $val) {
 
 if (!is_array($bets_list) && !$bets_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!$bet) {
             $error = getDbError($db_conn);
-            showError($error);
+            showDbError($error);
             exit();
         }
 

@@ -13,8 +13,8 @@ function dbGetPrepareStmt($link, $sql, $data = [])
     $stmt = mysqli_prepare($link, $sql);
 
     if ($stmt === false) {
-        $errorMsg = 'Не удалось инициализировать подготовленное выражение: ' . mysqli_error($link);
-        die($errorMsg);
+        showDbError('Не удалось инициализировать подготовленное выражение: ' . mysqli_error($link));
+        exit();
     }
 
     if ($data) {
@@ -44,8 +44,8 @@ function dbGetPrepareStmt($link, $sql, $data = [])
         $func(...$values);
 
         if (mysqli_errno($link) > 0) {
-            $errorMsg = 'Не удалось связать подготовленное выражение с параметрами: ' . mysqli_error($link);
-            die($errorMsg);
+            showDbError('Не удалось связать подготовленное выражение с параметрами: ' . mysqli_error($link));
+            exit();
         }
     }
 
@@ -269,6 +269,17 @@ function moveFileToLocalPath(array $file): ?string
 function showError(string $error)
 {
     print(includeTemplate('error.php', ['error' => $error, 'title' => 'YetiCave - Страница ошибки']));
+}
+
+/**
+ * Пишет подробности сбоя базы в лог и показывает посетителю общий текст.
+ * @param string $details текст ошибки, который нельзя выводить в браузер
+ * @return void
+ */
+function showDbError(string $details): void
+{
+    error_log($details);
+    showError('Ошибка сервера. Попробуйте обновить страницу позже.');
 }
 
 /**

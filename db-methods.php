@@ -77,7 +77,7 @@ function fetchFromDbByParams(mysqli $conn, string $sql, array $params)
     $error = mysqli_stmt_error($stmt);
 
     if ($error) {
-        showError($error);
+        showDbError($error);
         exit();
     }
 
@@ -102,7 +102,7 @@ function dbInsert(mysqli $conn, string $sql, array $data)
     $error = mysqli_stmt_error($stmt);
 
     if ($error) {
-        showError($error);
+        showDbError($error);
         exit();
     }
     if (!$result) {

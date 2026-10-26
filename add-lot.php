@@ -14,7 +14,7 @@ $categories_list = getCategories($db_conn);
 
 if (!is_array($categories_list) && !$categories_list) {
     $error = getDbError($db_conn);
-    showError($error);
+    showDbError($error);
     exit();
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (!$lot_id) {
                 $error = getDbError($db_conn);
-                showError($error);
+                showDbError($error);
                 exit();
             }
 
