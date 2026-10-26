@@ -50,7 +50,7 @@
                         <table class="history__list">
                             <?php foreach ($bets as $bet) : ?>
                                 <tr class="history__item">
-                                    <td class="history__name"><?= $bet['name']; ?></td>
+                                    <td class="history__name"><?= e($bet['name'] ?? ''); ?></td>
                                     <td class="history__price"><?= formatPrice($bet['amount']); ?></td>
                                     <td class="history__time"><?= $bet['time_passed']; ?></td>
                                 </tr>
