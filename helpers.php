@@ -378,7 +378,11 @@ function filterDataByRules(array $data, array $rules): array
  */
 function getPaginationParams(int $items_count, int $items_per_page): array
 {
-    $current_page = $_GET['page'] ?? 1;
+    $current_page = (int) ($_GET['page'] ?? 1);
+
+    if ($current_page < 1) {
+        $current_page = 1;
+    }
 
     $pages_count = ceil($items_count / $items_per_page);
     $offset = ($current_page - 1) * $items_per_page;
