@@ -6,7 +6,7 @@
         </p>
         <ul class="promo__list">
             <?php foreach ($categories_list as $category) : ?>
-                <li class="promo__item promo__item--<?= $category['code'] ?>">
+                <li class="promo__item promo__item--<?= e(preg_replace('/[^a-z0-9-]/', '', (string) ($category['code'] ?? ''))) ?>">
                     <a class="promo__link" href="lots-by-categories.php?category=<?= $category['id'] ?>">
                         <?= htmlspecialchars($category['title']); ?>
                     </a>
