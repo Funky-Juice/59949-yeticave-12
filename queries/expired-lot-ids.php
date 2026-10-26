@@ -3,19 +3,19 @@
 /**
  * Идентификаторы истёкших лотов, которым ещё не назначен победитель.
  * @param mysqli $conn
- * @return false|string|null
+ * @return array<int, int>|false
  */
-function getExpiredLotIds(mysqli $conn)
+function getExpiredLotIds(mysqli $conn): array|false
 {
-    $sql = "SELECT GROUP_CONCAT(id) AS lot_ids
+    $sql = "SELECT id
         FROM lots
         WHERE winner IS NULL AND expiry_dt < NOW()";
 
-    $result = fetchOneFromDb($conn, $sql);
+    $rows = fetchFromDb($conn, $sql);
 
-    if ($result === false) {
+    if ($rows === false) {
         return false;
     }
 
-    return $result['lot_ids'];
+    return array_map('intval', array_column($rows, 'id'));
 }
