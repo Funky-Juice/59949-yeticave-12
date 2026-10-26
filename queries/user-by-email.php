@@ -7,8 +7,7 @@
  */
 function getUserByEmail(mysqli $conn, string $email)
 {
-    $email_escaped_str = mysqli_real_escape_string($conn, $email);
-    $sql = "SELECT * FROM users WHERE email = '$email_escaped_str'";
+    $sql = "SELECT * FROM users WHERE email = ?";
 
-    return fetchFromDb($conn, $sql);
+    return fetchFromDbByParams($conn, $sql, [$email]);
 }
