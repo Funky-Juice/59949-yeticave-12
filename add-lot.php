@@ -21,6 +21,8 @@ if (!is_array($categories_list) && !$categories_list) {
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    verifyCsrf();
+
     $formData = array_merge($_POST, $_FILES);
     $filteredData = filterDataByRules($formData, $rules['lot-create'] ?? []);
 

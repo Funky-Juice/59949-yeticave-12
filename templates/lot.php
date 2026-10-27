@@ -32,6 +32,7 @@
                     </div>
                     <?php if ($is_visible) : ?>
                         <form class="lot-item__form" action="lot.php?id=<?= (int) ($lot['id'] ?? 0) ?>" method="post" autocomplete="off">
+                            <?= csrfField(); ?>
                             <p class="lot-item__form-item form__item <?= isset($errors['cost']) ? 'form__item--invalid' : '' ?>">
                                 <label for="cost">Ваша ставка</label>
                                 <input id="cost" type="text" name="cost" placeholder="12 000" value="<?= e($_POST['cost'] ?? '') ?>">

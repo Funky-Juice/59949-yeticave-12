@@ -52,6 +52,8 @@ $errors = [];
 $_SESSION['lot-info'] = $lot;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    verifyCsrf();
+
     $filteredData = filterDataByRules($_POST, $rules['lot-bet'] ?? []);
 
     $errors = validateForm($filteredData, $rules['lot-bet'] ?? []);

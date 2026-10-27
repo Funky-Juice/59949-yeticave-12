@@ -20,6 +20,8 @@ if (!is_array($categories_list) && !$categories_list) {
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    verifyCsrf();
+
     $filteredData = filterDataByRules($_POST, $rules['login'] ?? []);
 
     $errors = validateForm($filteredData, $rules['login'] ?? []);
