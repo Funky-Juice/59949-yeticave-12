@@ -284,6 +284,33 @@ main.container {
   color: #727b7f;
 }
 
+.user-menu__logout {
+  display: inline;
+  margin: 0 0 0 20px;
+  float: left;
+}
+
+.user-menu__logout button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #879296;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.user-menu__logout button:hover {
+  text-decoration: underline;
+}
+
+.user-menu__logout button:active {
+  color: #727b7f;
+}
+
 /* Футер */
 
 .main-footer {

@@ -30,7 +30,10 @@
                     <div class="user-menu__logged">
                         <p><?= htmlspecialchars($user['name']); ?></p>
                         <a class="user-menu__bets" href="my-bets.php">Мои ставки</a>
-                        <a class="user-menu__logout" href="logout.php">Выход</a>
+                        <form class="user-menu__logout" action="logout.php" method="post">
+                            <?= csrfField(); ?>
+                            <button type="submit">Выход</button>
+                        </form>
                     </div>
                 <?php else : ?>
                     <ul class="user-menu__list">
