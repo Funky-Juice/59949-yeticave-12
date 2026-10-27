@@ -412,6 +412,105 @@ function getSessionUser(): ?array
 }
 
 /**
+ * Стартует сессию с cookie, которую браузер не отдаёт скриптам и чужим сайтам.
+ * @return void
+ */
+function startAppSession(): void
+{
+    if (session_status() === PHP_SESSION_ACTIVE) {
+        return;
+    }
+
+    $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (int) ($_SERVER['SERVER_PORT'] ?? 0) === 443;
+
+    session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ]);
+
+    session_start();
+}
+
+/**
+ * Возвращает CSRF-токен текущей сессии и создаёт его, если токена ещё нет.
+ * @return string
+ */
+function csrfToken(): string
+{
+    if (empty($_SESSION['csrf']) || !is_string($_SESSION['csrf'])) {
+        $_SESSION['csrf'] = bin2hex(random_bytes(32));
+    }
+
+    return $_SESSION['csrf'];
+}
+
+/**
+ * Скрытое поле с CSRF-токеном для POST-форм.
+ * @return string
+ */
+function csrfField(): string
+{
+    return '<input type="hidden" name="csrf" value="' . e(csrfToken()) . '">';
+}
+
+/**
+ * Прерывает запрос, если POST пришёл без токена текущей сессии.
+ * @return void
+ */
+function verifyCsrf(): void
+{
+    $sessionToken = $_SESSION['csrf'] ?? '';
+    $requestToken = $_POST['csrf'] ?? '';
+    $valid = is_string($sessionToken)
+        && $sessionToken !== ''
+        && is_string($requestToken)
+        && hash_equals($sessionToken, $requestToken);
+
+    if (!$valid) {
+        http_response_code(403);
+        showError('Доступ запрещен 403');
+        exit();
+    }
+}
+
+/**
+ * Меняет идентификатор сессии и CSRF-токен, сохраняя остальные данные сессии.
+ * @return void
+ */
+function regenerateAppSession(): void
+{
+    session_regenerate_id(true);
+    $_SESSION['csrf'] = bin2hex(random_bytes(32));
+}
+
+/**
+ * Очищает сессию и просит браузер забыть сессионную cookie.
+ * @return void
+ */
+function destroyAppSession(): void
+{
+    $_SESSION = [];
+
+    if (ini_get('session.use_cookies')) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', [
+            'expires' => time() - 42000,
+            'path' => $params['path'] ?: '/',
+            'domain' => $params['domain'] ?? '',
+            'secure' => (bool) ($params['secure'] ?? false),
+            'httponly' => (bool) ($params['httponly'] ?? true),
+            'samesite' => ($params['samesite'] ?? '') !== '' ? $params['samesite'] : 'Lax',
+        ]);
+    }
+
+    session_destroy();
+}
+
+/**
  * Возвращает значение минимально допустимой ставки на лот
  * @return int|null
  */
