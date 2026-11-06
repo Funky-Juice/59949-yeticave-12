@@ -412,7 +412,7 @@ function getSessionUser(): ?array
 }
 
 /**
- * Стартует сессию с cookie, которую браузер не отдаёт скриптам и чужим сайтам.
+ * Стартует сессию с cookie, которую браузер отдаёт только по HTTPS и не отдаёт скриптам.
  * @return void
  */
 function startAppSession(): void
@@ -421,13 +421,10 @@ function startAppSession(): void
         return;
     }
 
-    $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-        || (int) ($_SERVER['SERVER_PORT'] ?? 0) === 443;
-
     session_set_cookie_params([
         'lifetime' => 0,
         'path' => '/',
-        'secure' => $secure,
+        'secure' => true,
         'httponly' => true,
         'samesite' => 'Lax',
     ]);
@@ -501,7 +498,7 @@ function destroyAppSession(): void
             'expires' => time() - 42000,
             'path' => $params['path'] ?: '/',
             'domain' => $params['domain'] ?? '',
-            'secure' => (bool) ($params['secure'] ?? false),
+            'secure' => true,
             'httponly' => (bool) ($params['httponly'] ?? true),
             'samesite' => ($params['samesite'] ?? '') !== '' ? $params['samesite'] : 'Lax',
         ]);
