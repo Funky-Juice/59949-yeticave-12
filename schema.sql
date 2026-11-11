@@ -12,6 +12,7 @@ CREATE TABLE users (
     password     VARCHAR(255)  NOT NULL,
     contact      VARCHAR(255)  NOT NULL,
     token        VARCHAR(255)  DEFAULT NULL,
+    pd_consent_at DATETIME                   DEFAULT NULL,
 
     created_at   DATETIME      NOT NULL          DEFAULT NOW(),
     updated_at   DATETIME,

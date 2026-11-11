@@ -10,11 +10,11 @@ VALUES
 
 # user password: 'qwerty13'
 INSERT INTO users
-    (email, name, password, contact)
+    (email, name, password, contact, pd_consent_at)
 VALUES
-    ('johndoe@mail.com', 'John Doe', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+10158144155'),
-    ('maxpain@mail.com', 'Max Payne', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+23072001'),
-    ('hopper@mail.com', 'Grace Hopper', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+19061992');
+    ('johndoe@mail.com', 'John Doe', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+10158144155', NOW()),
+    ('maxpain@mail.com', 'Max Payne', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+23072001', NOW()),
+    ('hopper@mail.com', 'Grace Hopper', '$2y$10$yQMp7omQa6ebIZ0cPtH9Cu55MnIDYGvzMxVi.i87M0nspkcUflpHW', '+19061992', NOW());
 
 INSERT INTO lots
     (expiry_dt, title, description, img_path, initial_price, bet_step, category_id, author)

@@ -28,6 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = validateForm($filteredData, $rules['registration'] ?? []);
 
+    if (empty($_POST['pd_consent'])) {
+        $errors['pd_consent'] = 'Нужно согласие на обработку персональных данных';
+    }
+
     if (empty($errors)) {
         $user = getUserByEmail($db_conn, $filteredData['email'] ?? '');
 

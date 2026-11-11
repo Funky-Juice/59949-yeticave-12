@@ -20,7 +20,7 @@ function createUser(mysqli $conn, array $data)
     $columns = implode(", ", array_keys($data));
     $placeholders = implode(", ", $placeholders_list);
 
-    $sql = "INSERT INTO users ($columns) VALUES ($placeholders)";
+    $sql = "INSERT INTO users ($columns, pd_consent_at) VALUES ($placeholders, NOW())";
 
     return dbInsert($conn, $sql, $data);
 }

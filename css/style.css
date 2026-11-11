@@ -914,6 +914,39 @@ input:invalid .form__error{
   background: #ffffff url("../img/error.svg") 702px 11px no-repeat;
 }
 
+.form__consent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 8px;
+  width: 730px;
+  margin-bottom: 22px;
+}
+
+.form__consent input[type="checkbox"] {
+  width: auto;
+  margin: 3px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.form__consent label {
+  display: inline;
+  width: calc(100% - 28px);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.form__consent .form__error {
+  flex-basis: 100%;
+  margin-top: 4px;
+}
+
+.form__item--invalid.form__consent input[type="checkbox"] {
+  background: none;
+  border: 0;
+}
+
 .form__input-file {
   display: inline-block;
 }

@@ -25,6 +25,14 @@
         <textarea id="message" name="message" placeholder="Напишите как с вами связаться"><?= e($_POST['message'] ?? '') ?></textarea>
         <span class="form__error"><?= e($errors['message'] ?? '') ?></span>
       </div>
+      <div class="form__item form__consent <?= isset($errors['pd_consent']) ? 'form__item--invalid' : '' ?>">
+        <input id="pd_consent" type="checkbox" name="pd_consent" value="1" <?= !empty($_POST['pd_consent']) ? 'checked' : '' ?>>
+        <label for="pd_consent">
+          Я даю <a class="text-link" href="consent.php">согласие на обработку персональных данных</a>
+          (<a class="text-link" href="privacy.php">политика</a>)
+        </label>
+        <span class="form__error"><?= e($errors['pd_consent'] ?? '') ?></span>
+      </div>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
       <button type="submit" class="button">Зарегистрироваться</button>
       <a class="text-link" href="login.php">Уже есть аккаунт</a>
