@@ -4,6 +4,9 @@
     <form class="form container <?= !empty($errors) ? 'form--invalid' : ''; ?>" action="login.php" method="post">
         <?= csrfField(); ?>
         <h2>Вход</h2>
+        <?php if (!empty($errors['form'])): ?>
+            <span class="form__error form__error--bottom"><?= e($errors['form']) ?></span>
+        <?php endif; ?>
         <div class="form__item <?= isset($errors['email']) ? 'form__item--invalid' : '' ?>">
             <label for="email">E-mail <sup>*</sup></label>
             <input id="email" type="text" name="email" placeholder="Введите e-mail" value="<?= e($_POST['email'] ?? '') ?>">
