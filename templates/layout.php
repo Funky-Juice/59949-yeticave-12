@@ -59,6 +59,9 @@
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>
             <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>
+            <p>
+                <a class="text-link" href="cookies.php">Cookie</a>
+            </p>
         </div>
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
@@ -99,6 +102,16 @@
         </div>
     </div>
 </footer>
+
+<div class="cookie-notice" id="cookie-notice" hidden>
+    <div class="cookie-notice__inner container">
+        <p class="cookie-notice__text">
+            Сайт сохраняет техническую cookie, чтобы держать вход и защищать формы.
+            <a class="cookie-notice__link" href="cookies.php">Подробнее</a>
+        </p>
+        <button class="cookie-notice__button button" type="button">Понятно</button>
+    </div>
+</div>
 
 <script src="flatpickr.js"></script>
 <script src="script.js"></script>
