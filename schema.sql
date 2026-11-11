@@ -65,3 +65,14 @@ CREATE TABLE bets (
 );
 
 CREATE INDEX user_bets ON bets(user_id, lot_id);
+
+CREATE TABLE login_attempts (
+    PRIMARY KEY (id),
+    id            INT           AUTO_INCREMENT,
+    ip            VARCHAR(45)   NOT NULL,
+    email         VARCHAR(128)  NOT NULL,
+    attempted_at  DATETIME      NOT NULL          DEFAULT NOW()
+);
+
+CREATE INDEX login_attempts_ip ON login_attempts(ip, attempted_at);
+CREATE INDEX login_attempts_email ON login_attempts(email, attempted_at);
