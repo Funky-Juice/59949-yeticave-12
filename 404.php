@@ -1,5 +1,7 @@
 <?php
 
+http_response_code(404);
+
 $db_conn = require_once('init.php');
 
 $categories_list = getCategories($db_conn);
