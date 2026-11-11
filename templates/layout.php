@@ -61,6 +61,8 @@
             <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>
             <p>
                 <a class="text-link" href="cookies.php">Cookie</a>
+                ·
+                <a class="text-link" href="privacy.php">Персональные данные</a>
             </p>
         </div>
         <div class="main-footer__social social">
