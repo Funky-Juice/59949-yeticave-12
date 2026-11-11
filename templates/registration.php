@@ -34,6 +34,7 @@
         <span class="form__error"><?= e($errors['pd_consent'] ?? '') ?></span>
       </div>
       <span class="form__error form__error--bottom">Пожалуйста, исправьте ошибки в форме.</span>
+      <p>YetiCave создан в учебных целях и опубликован как портфолио. <br>Это не торговая площадка и не аукцион: лоты, ставки и контакты не создают реальных сделок.</p>
       <button type="submit" class="button">Зарегистрироваться</button>
       <a class="text-link" href="login.php">Уже есть аккаунт</a>
     </form>

@@ -58,7 +58,7 @@
     <div class="main-footer__bottom container">
         <div class="main-footer__copyright">
             <p>© 2019, YetiCave</p>
-            <p>Интернет-аукцион сноубордического и горнолыжного снаряжения</p>
+            <p>YetiCave создан в учебных целях и опубликован как портфолио. Это не торговая площадка и не аукцион: лоты, ставки и контакты не создают реальных сделок.</p>
             <p>
                 <a class="text-link" href="cookies.php">Cookie</a>
                 ·

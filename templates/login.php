@@ -4,6 +4,7 @@
     <form class="form container <?= !empty($errors) ? 'form--invalid' : ''; ?>" action="login.php" method="post">
         <?= csrfField(); ?>
         <h2>Вход</h2>
+        <p>YetiCave создан в учебных целях и опубликован как портфолио. <br>Это не торговая площадка и не аукцион: лоты, ставки и контакты не создают реальных сделок.</p>
         <?php if (!empty($errors['form'])): ?>
             <span class="form__error form__error--bottom"><?= e($errors['form']) ?></span>
         <?php endif; ?>
