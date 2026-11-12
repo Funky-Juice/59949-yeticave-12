@@ -279,6 +279,11 @@ function showError(string $error)
 function showDbError(string $details): void
 {
     error_log($details);
+
+    if (!headers_sent()) {
+        http_response_code(500);
+    }
+
     showError('Ошибка сервера. Попробуйте обновить страницу позже.');
 }
 
