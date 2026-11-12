@@ -4,11 +4,21 @@
 * Наставник: [Сергей Попов](https://up.htmlacademy.ru/php/12/user/1181399).
 
 
-* PHP ver 7.3
+* PHP ver 8.5
+* MySQL ver 8.4
+* Apache web server
 
 ---
 
 Вместо оригинальных файлов с настройками подключения в проект добавлены их копии с постфиксом -example.
+
+### Локальный запуск
+
+- Скопировать [db-config-example.php](db-config-example.php) в `db-config.php` и [dsn-config-example.php](dsn-config-example.php) в `dsn-config.php`. Оба файла в [.gitignore](.gitignore) и в репозиторий не попадают. Подключение читает их из [db-methods.php](db-methods.php) и [mailer.php](mailer.php).
+- База `yeticave`: сначала [schema.sql](schema.sql), затем демо-данные из [queries.sql](queries.sql). В сидах пароль всех трёх пользователей — `qwerty13` (`johndoe@mail.com`, `maxpain@mail.com`, `hopper@mail.com`).
+- `composer install` — зависимость `symfony/mailer` из [composer.json](composer.json) (`php >= 8.4.1`). Каталог `vendor/` в git не коммитится.
+- Корень сайта — корень проекта (у локального OSPanel это `yeticave.local`, PHP 8.5). Каталог `uploads/` должен быть доступен на запись: туда кладутся фото лотов.
+- Почта: DSN по умолчанию `smtp://localhost:1025` (локальный SMTP вроде Mailpit). Письма победителям сейчас не уходят: [get-winner.php](get-winner.php) сразу делает `return`, а `require_once` в [index.php](index.php) закомментирован.
 
 ---
 
