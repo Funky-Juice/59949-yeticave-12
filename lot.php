@@ -37,14 +37,14 @@ if (empty($lot) || empty($lot['id'])) {
 
 $bets_list = getLotBets($db_conn, $lot['id']);
 
-foreach ($bets_list as $key => $val) {
-    $bets_list[$key]['time_passed'] = calcTimeHavePassed($val, 'created_at');
-}
-
-if (!is_array($bets_list) && !$bets_list) {
+if (!is_array($bets_list)) {
     $error = getDbError($db_conn);
     showDbError($error);
     exit();
+}
+
+foreach ($bets_list as $key => $val) {
+    $bets_list[$key]['time_passed'] = calcTimeHavePassed($val, 'created_at');
 }
 
 $errors = [];
