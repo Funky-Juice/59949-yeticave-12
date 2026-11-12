@@ -9,7 +9,13 @@ function getDbConnect()
     mysqli_report(MYSQLI_REPORT_OFF);
 
     $config = require('db-config.php');
-    $conn = mysqli_connect($config['host'], $config['username'], $config['password'], $config['db_name']);
+    // Сетевой сбой соединения — предупреждение PHP, а не исключение mysqli.
+    // Его нельзя отдавать обработчику: ниже соединение проверяет init.php.
+    $conn = @mysqli_connect($config['host'], $config['username'], $config['password'], $config['db_name']);
+
+    if (!$conn) {
+        return false;
+    }
 
     mysqli_set_charset($conn, "utf8mb4");
 
