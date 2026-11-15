@@ -3,7 +3,7 @@
 /**
  * Окно лимита неудачного входа, минут.
  */
-const LOGIN_ATTEMPT_WINDOW_MINUTES = 15;
+const LOGIN_ATTEMPT_WINDOW_MINUTES = 5;
 
 /**
  * Сколько неудачных попыток допускается в окне.
@@ -12,7 +12,7 @@ const LOGIN_ATTEMPT_WINDOW_MINUTES = 15;
 const LOGIN_ATTEMPT_LIMIT = 5;
 
 /**
- * Удаляет попытки старше суток, затем проверяет лимит за 15 минут.
+ * Удаляет попытки старше суток, затем проверяет лимит за 5 минут.
  * Лимит исчерпан, если попыток не меньше 5 на связку IP + email или на IP.
  *
  * @param mysqli $conn
